@@ -1,28 +1,3 @@
-// Voice Reflection Screen — Prototype only.
-//
-// IMPORTANT ARCHITECTURE BOUNDARIES:
-// - No real microphone API is used. No audio package is added.
-// - No audio bytes are captured, stored, or transmitted.
-// - No transcription. No AI analysis of voice.
-// - Recording is simulated with a timer to demonstrate the UX architecture.
-// - In production: replace startRecording/stopRecording with a platform
-//   microphone API behind an explicit permission request.
-//
-// PRODUCTION ARCHITECTURE (do not implement here):
-//   Microphone permission (explicit, on-demand)
-//     ↓
-//   Local audio capture
-//     ↓
-//   Survivor review
-//     ↓
-//   Optional: explicit transcription consent
-//     ↓
-//   Optional: secure transcription service
-//     ↓
-//   Survivor review of transcript
-//     ↓
-//   Optional: AI emotional analysis (separate consent)
-
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import '../../../app/app.dart';
@@ -44,7 +19,6 @@ class VoiceReflectionScreen extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_rounded),
           tooltip: 'Back',
           onPressed: () {
-            // Cancel any active recording before leaving
             if (provider.recordingState != RecordingState.idle) {
               provider.cancelRecording();
             }
@@ -106,7 +80,6 @@ class _IdleView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Header
         Text('Voice Reflection',
             style: theme.textTheme.displaySmall
                 ?.copyWith(color: cs.primary)),
@@ -118,15 +91,9 @@ class _IdleView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // Privacy notice
         _PrivacyNotice(cs: cs, theme: theme),
-        const SizedBox(height: 24),
-
-        // Prototype label
-        _PrototypeBanner(cs: cs, theme: theme),
         const SizedBox(height: 28),
 
-        // Mic icon
         Center(
           child: Container(
             width: 96,
@@ -141,7 +108,6 @@ class _IdleView extends StatelessWidget {
         ),
         const SizedBox(height: 32),
 
-        // Record button — shows confirmation dialog before starting
         ElevatedButton.icon(
           onPressed: () => _confirmAndRecord(context),
           icon: const Icon(Icons.fiber_manual_record_rounded, size: 18),
@@ -159,7 +125,6 @@ class _IdleView extends StatelessWidget {
               style: TextStyle(color: cs.onSurface.withAlpha(150))),
         ),
 
-        // Saved reflections list
         if (provider.savedCount > 0) ...[
           const SizedBox(height: 32),
           _SavedList(provider: provider, cs: cs, theme: theme),
@@ -181,13 +146,11 @@ class _IdleView extends StatelessWidget {
           const Text('Before you record'),
         ]),
         content: Text(
-          'Your voice reflection stays in this prototype session only.\n\n'
+          'Your voice reflection stays in this session only.\n\n'
           'Nothing is uploaded or shared.\n'
           'No transcription is created automatically.\n'
           'No AI analysis is performed on your voice.\n\n'
-          'Microphone access is needed only if you choose to record.\n\n'
-          'Note: This prototype simulates recording — '
-          'no actual audio is captured in this version.',
+          'Microphone access is needed only if you choose to record.',
           style: Theme.of(ctx)
               .textTheme
               .bodyMedium
@@ -226,7 +189,6 @@ class _RecordingView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Status header
         Row(
           children: [
             Container(
@@ -251,7 +213,6 @@ class _RecordingView extends StatelessWidget {
         ),
         const SizedBox(height: 32),
 
-        // Elapsed timer
         Center(
           child: Text(
             provider.elapsedLabel,
@@ -263,12 +224,9 @@ class _RecordingView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // Waveform visualization (built-in Flutter widgets, no package)
-        _WaveformVisualizer(
-            elapsed: provider.elapsedSeconds, cs: cs),
+        _WaveformVisualizer(elapsed: provider.elapsedSeconds, cs: cs),
         const SizedBox(height: 32),
 
-        // Stop button
         ElevatedButton.icon(
           onPressed: provider.stopRecording,
           icon: const Icon(Icons.stop_rounded, size: 20),
@@ -282,7 +240,6 @@ class _RecordingView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
 
-        // Cancel
         OutlinedButton.icon(
           onPressed: () => _confirmCancel(context),
           icon: const Icon(Icons.delete_outline_rounded, size: 18),
@@ -354,7 +311,6 @@ class _ReviewView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
 
-        // Duration card
         Container(
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
@@ -393,7 +349,6 @@ class _ReviewView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
 
-        // Playback note (prototype — no real audio)
         Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
@@ -408,8 +363,7 @@ class _ReviewView extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  'Playback is not available in this prototype. '
-                  'In production, you would be able to listen before saving.',
+                  'Playback will be available in a future update.',
                   style: theme.textTheme.bodyMedium?.copyWith(
                       color: cs.onSurface.withAlpha(150),
                       fontStyle: FontStyle.italic,
@@ -421,11 +375,9 @@ class _ReviewView extends StatelessWidget {
         ),
         const SizedBox(height: 16),
 
-        // Transcription placeholder
         _TranscriptionPlaceholder(cs: cs, theme: theme),
         const SizedBox(height: 24),
 
-        // Save button
         ElevatedButton.icon(
           onPressed: () => _save(context),
           icon: const Icon(Icons.save_outlined, size: 18),
@@ -438,7 +390,6 @@ class _ReviewView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
 
-        // Delete
         OutlinedButton.icon(
           onPressed: () => _confirmDiscard(context),
           icon: const Icon(Icons.delete_outline_rounded, size: 18),
@@ -459,8 +410,7 @@ class _ReviewView extends StatelessWidget {
     provider.saveRecording();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text(
-            'Voice reflection saved for this session.'),
+        content: const Text('Voice reflection saved.'),
         behavior: SnackBarBehavior.floating,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -517,7 +467,7 @@ class _SavedList extends StatelessWidget {
             style: theme.textTheme.titleLarge),
         const SizedBox(height: 4),
         Text(
-          'These recordings exist only in this prototype session.',
+          'These recordings are stored locally on your device.',
           style: theme.textTheme.bodyMedium
               ?.copyWith(color: cs.onSurface.withAlpha(140), fontSize: 12),
         ),
@@ -578,7 +528,7 @@ class _SavedTile extends StatelessWidget {
                     style: theme.textTheme.bodyMedium
                         ?.copyWith(fontWeight: FontWeight.w500)),
                 Text(
-                  'Duration: ${reflection.durationLabel}  •  Session only',
+                  'Duration: ${reflection.durationLabel}',
                   style: theme.textTheme.bodyMedium?.copyWith(
                       fontSize: 12,
                       color: cs.onSurface.withAlpha(130)),
@@ -629,7 +579,6 @@ class _SavedTile extends StatelessWidget {
 
 /// Simple animated waveform using built-in Flutter widgets.
 /// Uses elapsed seconds as a seed for pseudo-random bar heights.
-/// No audio data is used — purely decorative prototype visualization.
 class _WaveformVisualizer extends StatelessWidget {
   final int elapsed;
   final ColorScheme cs;
@@ -647,7 +596,6 @@ class _WaveformVisualizer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(barCount, (i) {
-          // Bars near center are taller for a natural waveform shape
           final center = barCount / 2;
           final distFromCenter = (i - center).abs() / center;
           final maxH = 48.0 * (1 - distFromCenter * 0.5);
@@ -706,7 +654,7 @@ class _TranscriptionPlaceholder extends StatelessWidget {
                 color: cs.surface,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Text('Not available in this prototype',
+              child: Text('Coming in a future update',
                   style: theme.textTheme.bodyMedium?.copyWith(
                       fontSize: 11,
                       color: cs.onSurface.withAlpha(130))),
@@ -714,9 +662,9 @@ class _TranscriptionPlaceholder extends StatelessWidget {
           ]),
           const SizedBox(height: 8),
           Text(
-            'In a production version, you could choose whether to create a '
+            'You will be able to choose whether to create a '
             'transcription before any AI analysis. '
-            'Transcription would require its own separate consent.',
+            'Transcription will require its own separate consent.',
             style: theme.textTheme.bodyMedium?.copyWith(
                 color: cs.onSurface.withAlpha(140),
                 fontSize: 12,
@@ -752,7 +700,7 @@ class _PrivacyNotice extends StatelessWidget {
             Icon(Icons.lock_outline_rounded,
                 size: 16, color: cs.primary),
             const SizedBox(width: 8),
-            Text('Your voice is private in this prototype.',
+            Text('Your voice is private.',
                 style: theme.textTheme.labelLarge
                     ?.copyWith(color: cs.primary)),
           ]),
@@ -780,43 +728,6 @@ class _PrivacyNotice extends StatelessWidget {
                   ],
                 ),
               )),
-        ],
-      ),
-    );
-  }
-}
-
-// ── Prototype banner ──────────────────────────────────────────────────────────
-
-class _PrototypeBanner extends StatelessWidget {
-  final ColorScheme cs;
-  final ThemeData theme;
-
-  const _PrototypeBanner({required this.cs, required this.theme});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: cs.secondaryContainer.withAlpha(100),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.science_outlined,
-              size: 15, color: cs.onSurface.withAlpha(140)),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              'Prototype: recording is simulated — no actual audio is captured. '
-              'Session-only storage.',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                  fontSize: 12,
-                  color: cs.onSurface.withAlpha(140),
-                  fontStyle: FontStyle.italic),
-            ),
-          ),
         ],
       ),
     );

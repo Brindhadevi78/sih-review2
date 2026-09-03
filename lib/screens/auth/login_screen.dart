@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _showDemoSheet() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -236,11 +237,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Divider(),
                   const SizedBox(height: 16),
 
-                  // Demo Access
+                  // Quick Access
                   OutlinedButton.icon(
                     onPressed: _showDemoSheet,
                     icon: const Icon(Icons.play_circle_outline_rounded),
-                    label: const Text('Demo Access'),
+                    label: const Text('Quick Access'),
                     style: OutlinedButton.styleFrom(
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -249,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'For SIH judges — explore all roles instantly',
+                    'Explore all roles instantly',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: cs.onSurface.withAlpha(100),
@@ -289,8 +290,8 @@ class _DemoSheet extends StatelessWidget {
           'Administrator', Icons.admin_panel_settings_outlined, UserRole.admin, null),
     ];
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 20, 24, 32),
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(24, 20, 24, MediaQuery.of(context).viewInsets.bottom + 32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -306,7 +307,7 @@ class _DemoSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text('Demo Access',
+          Text('Quick Access',
               style: theme.textTheme.headlineMedium,
               textAlign: TextAlign.center),
           const SizedBox(height: 4),

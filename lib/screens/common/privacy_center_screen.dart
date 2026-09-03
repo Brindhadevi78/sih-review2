@@ -87,7 +87,7 @@ class _PrivacyHeader extends StatelessWidget {
             border: Border.all(color: cs.primary.withAlpha(30)),
           ),
           child: Text(
-            'Prototype privacy controls — production encryption and backend security would be implemented separately.',
+            'Privacy controls — production encryption and backend security will be implemented separately.',
             style: theme.textTheme.bodyMedium?.copyWith(
                 color: cs.primary, fontStyle: FontStyle.italic),
           ),
@@ -190,7 +190,7 @@ class _JournalPrivacySectionState extends State<_JournalPrivacySection> {
           const SizedBox(height: 14),
           if (_deleted)
             _StatusBanner(
-              message: 'Your journal entries were deleted from this prototype session.',
+              message: 'Your journal entries were deleted from this session.',
               cs: cs,
               theme: theme,
             )
@@ -279,7 +279,7 @@ class _VoiceSectionState extends State<_VoiceSection> {
           ]),
           const SizedBox(height: 8),
           Text(
-            'Voice reflections are stored only for this prototype session. '
+            'Voice reflections are stored only for this session. '
             'No audio is uploaded, shared, or automatically transcribed. '
             'No AI analysis is performed on your voice.',
             style: theme.textTheme.bodyMedium
@@ -296,7 +296,7 @@ class _VoiceSectionState extends State<_VoiceSection> {
           const SizedBox(height: 14),
           if (_deleted)
             _StatusBanner(
-              message: 'Voice reflections deleted from this prototype session.',
+              message: 'Voice reflections deleted from this session.',
               cs: cs,
               theme: theme,
             )
@@ -325,7 +325,7 @@ class _VoiceSectionState extends State<_VoiceSection> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text('Delete all voice reflections?'),
         content: const Text(
-          'This removes all voice reflections from this prototype session.\n\nThis cannot be undone.',
+          'This removes all voice reflections from this session.\n\nThis cannot be undone.',
         ),
         actions: [
           TextButton(
@@ -396,7 +396,7 @@ class _CheckInSectionState extends State<_CheckInSection> {
           const SizedBox(height: 14),
           if (_deleted)
             _StatusBanner(
-              message: 'Check-in history removed from this prototype session.',
+              message: 'Check-in history removed from this session.',
               cs: cs,
               theme: theme,
             )
@@ -425,7 +425,7 @@ class _CheckInSectionState extends State<_CheckInSection> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: const Text('Delete all check-in history?'),
         content: const Text(
-          'This removes your saved reflection and check-in history from this prototype session.\n\nYour profile and preferences will not be affected.',
+          'This removes your saved reflection and check-in history from this session.\n\nYour profile and preferences will not be affected.',
         ),
         actions: [
           TextButton(
@@ -477,7 +477,7 @@ class _AiConsentSection extends StatelessWidget {
           ]),
           const SizedBox(height: 8),
           Text(
-            'When enabled, prototype emotional analysis may use your current '
+            'When enabled, emotional analysis may use your current '
             'check-in and, when you choose to analyse it, your current journal entry.',
             style: theme.textTheme.bodyMedium
                 ?.copyWith(color: cs.onSurface.withAlpha(160), height: 1.5),
@@ -507,7 +507,7 @@ class _AiConsentSection extends StatelessWidget {
           ]),
           const SizedBox(height: 6),
           Text(
-            'Prototype AI only — no real AI service is connected. '
+            'AI analysis only — no external AI service is connected. '
             'Results are general emotional observations, not medical diagnoses.',
             style: theme.textTheme.bodyMedium?.copyWith(
                 color: cs.onSurface.withAlpha(140),
@@ -544,7 +544,7 @@ class _AiConsentSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'When enabled, prototype AI may use your check-in mood, '
+              'When enabled, AI may use your check-in mood, '
               'confidence, and social connection ratings to provide a general '
               'emotional observation.\n\n'
               'When you choose to analyse a specific reflection, your journal '
@@ -610,7 +610,7 @@ class _AboutAiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const points = [
-      'Prototype AI only — not a real AI service.',
+      'AI only — no external AI service is connected.',
       'Provides general emotional observations based on your check-in.',
       'Does not diagnose any condition.',
       'Does not replace professional support.',
@@ -786,7 +786,7 @@ class _SupportSharingSection extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Nothing is currently being shared. All actions below are local prototype records only — no information was transmitted.',
+            'Nothing is currently being shared. All actions below are local records only — no information was transmitted.',
             style: theme.textTheme.bodyMedium?.copyWith(
                 color: cs.onSurface.withAlpha(140),
                 fontStyle: FontStyle.italic),
@@ -945,7 +945,7 @@ class _DeleteAllSection extends StatelessWidget {
           ]),
           const SizedBox(height: 8),
           Text(
-            'This will remove all your local prototype data. This action cannot be undone.',
+            'This will remove all your local data. This action cannot be undone.',
             style: theme.textTheme.bodyMedium
                 ?.copyWith(color: Colors.red.shade800, height: 1.5),
           ),
@@ -981,7 +981,7 @@ class _DeleteAllSection extends StatelessWidget {
           const Text('Delete everything?'),
         ]),
         content: const Text(
-          'This will remove your local prototype data, including reflections, recovery activity history, support choices and personalisation data.\n\nThis cannot be undone.',
+          'This will remove your local data, including reflections, recovery activity history, support choices and personalisation data.\n\nThis cannot be undone.',
         ),
         actions: [
           TextButton(

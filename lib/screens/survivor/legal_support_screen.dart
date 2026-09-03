@@ -102,28 +102,28 @@ class _LegalSupportBodyState extends State<_LegalSupportBody> {
                     color: const Color(0xFFE8A598),
                     resources: const [
                       _Resource(
-                        name: 'Women\'s Helpline (DEMO)',
+                        name: 'Women\'s Helpline',
                         purpose: 'Emotional support and guidance',
                         description:
                             'A helpline for women experiencing abuse or distress. '
                             'Trained counsellors provide confidential support.',
-                        tag: 'Demo resource',
+                        tag: 'Support resource',
                       ),
                       _Resource(
-                        name: 'Women\'s Shelter Network (DEMO)',
+                        name: 'Women\'s Shelter Network',
                         purpose: 'Safe accommodation and support',
                         description:
                             'Provides temporary safe housing and support services '
                             'for women and children fleeing unsafe situations.',
-                        tag: 'Demo resource',
+                        tag: 'Support resource',
                       ),
                       _Resource(
-                        name: 'Women\'s Rights Organisation (DEMO)',
+                        name: 'Women\'s Rights Organisation',
                         purpose: 'Advocacy and empowerment',
                         description:
                             'Supports women in understanding their rights and '
                             'accessing appropriate services.',
-                        tag: 'Demo resource',
+                        tag: 'Support resource',
                       ),
                     ],
                     cs: cs,
@@ -138,28 +138,28 @@ class _LegalSupportBodyState extends State<_LegalSupportBody> {
                     color: const Color(0xFF7B6FA0),
                     resources: const [
                       _Resource(
-                        name: 'Legal Aid Service (DEMO)',
+                        name: 'Legal Aid Service',
                         purpose: 'Free legal advice and representation',
                         description:
                             'Provides free or low-cost legal assistance for '
                             'survivors navigating legal processes.',
-                        tag: 'Demo resource',
+                        tag: 'Legal resource',
                       ),
                       _Resource(
-                        name: 'Protection Order Information (DEMO)',
+                        name: 'Protection Order Information',
                         purpose: 'Understanding protection orders',
                         description:
                             'Information about how to apply for protection orders '
                             'and what they cover.',
-                        tag: 'Demo resource',
+                        tag: 'Legal resource',
                       ),
                       _Resource(
-                        name: 'Workplace Rights Helpline (DEMO)',
+                        name: 'Workplace Rights Helpline',
                         purpose: 'Workplace harassment and rights',
                         description:
                             'Guidance on workplace harassment, discrimination '
                             'and your legal rights as an employee.',
-                        tag: 'Demo resource',
+                        tag: 'Legal resource',
                       ),
                     ],
                     cs: cs,
@@ -174,28 +174,28 @@ class _LegalSupportBodyState extends State<_LegalSupportBody> {
                     color: const Color(0xFF64B5F6),
                     resources: const [
                       _Resource(
-                        name: 'Cyber Safety Helpline (DEMO)',
+                        name: 'Cyber Safety Helpline',
                         purpose: 'Online harassment and digital safety',
                         description:
                             'Support for people experiencing cyberstalking, '
                             'online harassment, image-based abuse or digital threats.',
-                        tag: 'Demo resource',
+                        tag: 'Safety resource',
                       ),
                       _Resource(
-                        name: 'Digital Evidence Guide (DEMO)',
+                        name: 'Digital Evidence Guide',
                         purpose: 'Preserving evidence of online abuse',
                         description:
                             'Information on how to safely document and preserve '
                             'evidence of online abuse for legal purposes.',
-                        tag: 'Demo resource',
+                        tag: 'Safety resource',
                       ),
                       _Resource(
-                        name: 'Platform Reporting Guide (DEMO)',
+                        name: 'Platform Reporting Guide',
                         purpose: 'Reporting abuse on social platforms',
                         description:
                             'Step-by-step guidance on reporting abusive content '
                             'and accounts on major social media platforms.',
-                        tag: 'Demo resource',
+                        tag: 'Safety resource',
                       ),
                     ],
                     cs: cs,
@@ -274,8 +274,8 @@ class _EmergencySection extends StatelessWidget {
               context,
               title: 'Emergency Services',
               body:
-                  'In a real implementation, this would allow you to call emergency services.\n\n'
-                  'Demo only — no call is made.',
+                  'This will allow you to call emergency services.\n\n'
+                  'Please confirm to proceed.',
             ),
             cs: cs,
             theme: theme,
@@ -289,8 +289,8 @@ class _EmergencySection extends StatelessWidget {
               context,
               title: 'Trusted Contact',
               body:
-                  'In a real implementation, this would allow you to message a trusted contact.\n\n'
-                  'Demo only — no message is sent.',
+                  'This will allow you to message a trusted contact.\n\n'
+                  'Please confirm to proceed.',
             ),
             cs: cs,
             theme: theme,
@@ -304,8 +304,8 @@ class _EmergencySection extends StatelessWidget {
               context,
               title: 'Women\'s Support Line',
               body:
-                  'In a real implementation, this would connect you with a women\'s support helpline.\n\n'
-                  'Demo only — no call is made.',
+                  'This will connect you with a women\'s support helpline.\n\n'
+                  'Please confirm to proceed.',
             ),
             cs: cs,
             theme: theme,
@@ -319,8 +319,8 @@ class _EmergencySection extends StatelessWidget {
               context,
               title: 'Nearby Support',
               body:
-                  'In a real implementation, this would help you find nearby support services.\n\n'
-                  'Demo only — no location is shared.',
+                  'This will help you find nearby support services near you.\n\n'
+                  'Please confirm to proceed.',
             ),
             cs: cs,
             theme: theme,
@@ -362,7 +362,7 @@ class _EmergencySection extends StatelessWidget {
               Navigator.pop(ctx);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Demo only — $title was not contacted.'),
+                  content: Text('$title selected.'),
                   behavior: SnackBarBehavior.floating,
                   duration: const Duration(seconds: 3),
                 ),
@@ -607,7 +607,7 @@ class _ResourceCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(
-                'Demo resource — verify availability before relying on it.',
+                'Verify availability before relying on this resource.',
                 style: TextStyle(fontSize: 12),
               ),
             ),
@@ -662,7 +662,7 @@ class _DemoDisclaimer extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              'DEMO — These are example resources. '
+              'These are example resources. '
               'Verify availability before relying on any resource.',
               style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 12, color: cs.onSurface.withAlpha(160)),

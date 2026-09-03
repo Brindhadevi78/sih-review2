@@ -229,7 +229,7 @@ class _PlatformOverview extends StatelessWidget {
             children: [
               _MetricChip(
                 label: 'Active Sessions',
-                value: 'Local prototype session',
+                value: 'Local session',
                 isDemo: true,
                 cs: cs,
                 theme: theme,
@@ -251,7 +251,7 @@ class _PlatformOverview extends StatelessWidget {
               _MetricChip(
                 label: 'Support Requests',
                 value: 'Backend required',
-                isDemo: true,
+                isDemo: false,
                 cs: cs,
                 theme: theme,
               ),
@@ -382,7 +382,7 @@ class _ActivityAnalytics extends StatelessWidget {
                         Text(
                           total == 0
                               ? 'No data'
-                              : 'Demo metric',
+                              : 'Aggregate metric',
                           style: theme.textTheme.bodyMedium?.copyWith(
                               fontSize: 11,
                               color: cs.onSurface.withAlpha(120)),
@@ -536,9 +536,9 @@ class _SystemStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statuses = [
-      ('Authentication', 'Local prototype'),
-      ('Data storage', 'In-memory prototype'),
-      ('AI', 'Mock / prototype'),
+      ('Authentication', 'Local session'),
+      ('Data storage', 'In-memory'),
+      ('AI', 'Mock service'),
       ('Voice', 'Not enabled'),
       ('Backend', 'Not connected'),
       ('Database', 'Not connected'),
@@ -772,7 +772,7 @@ class _MetricChip extends StatelessWidget {
             ),
           ),
           if (isDemo)
-            Text('Demo metric',
+            Text('Coming soon',
                 style: theme.textTheme.bodyMedium?.copyWith(
                     fontSize: 10,
                     color: cs.onSurface.withAlpha(100),

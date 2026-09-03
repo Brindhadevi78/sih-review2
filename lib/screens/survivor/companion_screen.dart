@@ -264,7 +264,7 @@ class _AboutCompanionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const points = [
-      'Your companion is a supportive prototype feature.',
+      'Your companion is a supportive feature.',
       'It is not a therapist.',
       'It does not diagnose.',
       'It does not contact anyone.',

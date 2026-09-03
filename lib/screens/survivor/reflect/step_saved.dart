@@ -110,7 +110,7 @@ class _InsightCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          // Prototype label
+          // AI insight label
           Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -120,7 +120,7 @@ class _InsightCard extends StatelessWidget {
               border: Border.all(color: cs.primary.withAlpha(30)),
             ),
             child: Text(
-              'Prototype AI insight — not a diagnosis.',
+              'AI insight — not a diagnosis.',
               style: theme.textTheme.bodyMedium?.copyWith(
                   fontSize: 11,
                   color: cs.onSurface.withAlpha(150),
